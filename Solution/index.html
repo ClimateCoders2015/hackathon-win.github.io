@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateCoders</title>
+	<link href="Stylesheet.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+ 
+        /* Set the size of the div element 
+        that contains the map */
+        #map {
+            height: 400px;
+            width: 400px;
+        }
+         
+        h2 {
+            color: #308d46;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+		<div class="Links">
+	    	<table>
+	            <tr>
+	                <td style="width: 25%">
+	                    <a href="ClimateCoders1.html">
+	                    <img src="Team Logo.png" alt="Team Logo" height="25%" width="25%"></a>
+	                </td>
+	                <td style="width: 25%">
+	                    <a href="Team Page.html" class="link">Meet Our Team</a>
+	                </td>
+	                <td style="width: 25%">
+	                    <a href="Solution.html" class="link">Our Solution</a>
+	                </td>
+	                <td style="width: 25%">
+	                    <a href="Contact Us.html" class="link">Contact Us</a>
+	                </td>
+	
+	            </tr>
+	        </table>
+		</div>
+	</div>
+	<script>
+		if ("geolocation" in navigator) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var userLocation = {
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude
+					};
+					findClosestFoodBank(userLocation); // Function to find the closest food bank
+				}, function(error) {
+				console.error("Geolocation error: " + error.message);
+				// Handle errors or prompt user to enter their location manually
+ 			});
+		} else {
+			console.log("Geolocation is not supported by this browser.");
+			// Prompt user to enter their location manually
+		}
+	</script>
+	<iframe
+		width="600"
+		height="450"
+		style="border:0"
+		loading="lazy"
+		allowfullscreen
+		src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCJAgjCa11M6ydqczC7NFesU3jplZJKIEs&origin=USER_LATITUDE,USER_LONGITUDE&destination=FOOD_BANK_LATITUDE,FOOD_BANK_LONGITUDE">
+	</iframe>
+  
+</body>
+
+
+</html>
