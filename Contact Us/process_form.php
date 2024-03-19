@@ -42,7 +42,7 @@
 			$message = $_POST["message"];
 
 			// Set up email parameters
-			$to = climatecoders2015@gmail.com; // Replace with your email address
+			$to = "climatecoders2015@gmail.com"; // Replace with your email address
 			$subject = "New form submission";
 			$body = "Name: $name\n";
 			$body .= "Email: $email\n";
