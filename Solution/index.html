@@ -57,7 +57,8 @@
 				const fuel_cost = (distance / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
-    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement.toFixed(2)} km`;
+				const minDisplacement = minDisplacement.toFixed(2)
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
     			const mapLink = document.getElementById('mapLink');
     			mapLink.href = url[closestIndex];
     			mapLink.textContent = 'View Map';
@@ -65,7 +66,8 @@
 				const fuel_cost = ((distance + distance * 0.25) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
-    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement.toFixed(2)} km`;
+				const minDisplacement = minDisplacement.toFixed(2)
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
     			const mapLink = document.getElementById('mapLink');
     			mapLink.href = url[closestIndex];
     			mapLink.textContent = 'View Map';
@@ -73,7 +75,8 @@
 				const fuel_cost = ((distance + distance * 0.5) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
-    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement.toFixed(2)} km`;
+				const minDisplacement = minDisplacement.toFixed(2)
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
     			const mapLink = document.getElementById('mapLink');
     			mapLink.href = url[closestIndex];
     			mapLink.textContent = 'View Map';
@@ -91,10 +94,13 @@
 				// Handle errors or prompt user to enter their location manually
  			});
 		} else {
-			innerHtml("Geolocation is not supported by this browser.");
+			document.write("Geolocation is not supported by this browser.");
 			// Prompt user to enter their location manually
 		}
 	</script>
+	<h3><div id="tripCost">Cost of trip: </div>
+	<div id="displacement">Displacement: </div>
+	<div id="mapUrl">URL: <a id="mapLink" href="#">Map</a></div></h3>
 	<div class="footer">
 		<p><h3>Contact Details</p>
 		<div class="linkfooter">
