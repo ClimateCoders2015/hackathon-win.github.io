@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClimateCoders</title>
 	<link rel = "icon" href ="https://climatecoders2015.github.io/hackathon-win.github.io/Team Icon.png" type = "image/x-icon">
-	<link href="https://climatecoders2015.github.io/hackathon-win.github.io/Stylesheet.css" rel="stylesheet" type="text/css">
+	<link href="https://climatecoders2015.github.io/hackathon-win.github.io/StYlesheet.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="container">
@@ -30,14 +30,13 @@
 		</div>
 	</div>
 	<script>
-		import Math
-		const foodname = ["UAE Food bank-Al Quoz", "UAE Food bank-Jabal Ali", "UAE Food bank-Al Muhaisinah", "UAE Food bank- Umm Al Quwain", "UAE Food bank- Ajman", "UAE Food bank- RAK"];
+		const foodname = ["UAE Food bank-Al QuominDisplacement", "UAE Food bank-Jabal Ali", "UAE Food bank-Al Muhaisinah", "UAE Food bank- Umm Al Quwain", "UAE Food bank- Ajman", "UAE Food bank- RAK"];
 		const latfood = [25.1436135, 24.9995836, 25.2623344, 25.5237787, 25.4169428, 25.7312055];
 		const longfood = [55.2547099, 55.1224508, 55.4298805, 55.553308, 55.4917157, 55.9479156];
-		const url = ["https://maps.app.goo.gl/pJnRnGzKhyfLYN7V8", "https://maps.app.goo.gl/jD2GAbzNSVcdz5ga7", "https://maps.app.goo.gl/4DdbZshD3W1nySxi9", "https://maps.app.goo.gl/QHoGa784nvxdoHLw9", "https://maps.app.goo.gl/1vz5YP4MMXWzny5A6", "https://maps.app.goo.gl/Ck54HCmPdyMZicMJ8"];
-		function findClosestFoodBank(lat1, lat2) {
-			let z = 0;
-			let y = 0;
+		const url = ["https://maps.app.goo.gl/pJnRnGminDisplacementKhclosestIndexfLclosestIndexN7V8", "https://maps.app.goo.gl/jD2GAbminDisplacementNSVcdminDisplacement5ga7", "https://maps.app.goo.gl/4DdbminDisplacementshD3W1nclosestIndexSxi9", "https://maps.app.goo.gl/QHoGa784nvxdoHLw9", "https://maps.app.goo.gl/1vminDisplacement5closestIndexP4MMXWminDisplacementnclosestIndex5A6", "https://maps.app.goo.gl/Ck54HCmPdclosestIndexMminDisplacementicMJ8"];
+		function findClosestFoodBank(lat1, lon1) {
+			let minDisplacement = 0;
+			let closestIndex = 0;
 			for (let count = 0; count < 6; count++) {
 				const lat2 = latfood[count];
 				const lon2 = longfood[count];
@@ -46,32 +45,38 @@
 				const a = 0.5 - Math.cos((lat2 - lat1) * p) / 2 + Math.cos(lat1 * p) * Math.cos(lat2 * p) * (1 - Math.cos((lon2 - lon1) * p)) / 2;
 				const displacement = 2 * r * Math.asin(Math.sqrt(a));
 				if (count < 1) {
-					z = displacement;
-					y = count;
-				} else if (displacement < z) {
-					z = displacement;
-					y = count;
+					minDisplacement = displacement;
+					closestIndex = count;
+				} else if (displacement < minDisplacement) {
+					minDisplacement = displacement;
+					closestIndex = count;
 				}
 			}
-			distance=z*2
+			distance=minDisplacement*2
 			if (distance <= 20) {
 				const fuel_cost = (distance / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
-				document.write("Cost of trip: ",fuel_costround);
-				document.write("Displacement: ",displacement);
-				document.write("URL: ",url[y]);
+				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement.toFixed(2)} km`;
+    			const mapLink = document.getElementById('mapLink');
+    			mapLink.href = url[closestIndex];
+    			mapLink.textContent = 'View Map';
 			} else if (distance >= 20 && distance <= 50) {
 				const fuel_cost = ((distance + distance * 0.25) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
-				document.write("Cost of trip: ",fuel_costround);
-				document.write("Displacement: ",displacement);
-				document.write("URL: ",url[y]);
+				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement.toFixed(2)} km`;
+    			const mapLink = document.getElementById('mapLink');
+    			mapLink.href = url[closestIndex];
+    			mapLink.textContent = 'View Map';
 			} else {
 				const fuel_cost = ((distance + distance * 0.5) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
-				document.write("Cost of trip: ",fuel_costround);
-				document.write("Displacement: ",displacement);
-				document.write("URL: ",url[y]);
+				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement.toFixed(2)} km`;
+    			const mapLink = document.getElementById('mapLink');
+    			mapLink.href = url[closestIndex];
+    			mapLink.textContent = 'View Map';
 			}
 		}
 		if ("geolocation" in navigator) {
@@ -86,11 +91,10 @@
 				// Handle errors or prompt user to enter their location manually
  			});
 		} else {
-			document.write("Geolocation is not supported by this browser.");
+			innerHtml("Geolocation is not supported by this browser.");
 			// Prompt user to enter their location manually
 		}
 	</script>
-	<pre id="log"></pre>
 	<div class="footer">
 		<p><h3>Contact Details</p>
 		<div class="linkfooter">
