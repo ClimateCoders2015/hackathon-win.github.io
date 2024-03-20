@@ -55,21 +55,21 @@
 			if (z <= 20) {
 				const fuel_cost = (z / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
-				console.log("Cost of trip: ",fuel_costround);
-				console.log("Displacement: ",displacement);
-				console.log("URL: ",url[y]);
+				document.write("Cost of trip: ",fuel_costround);
+				document.write("Displacement: ",displacement);
+				document.write("URL: ",url[y]);
 			} else if (z >= 20 && z <= 50) {
 				const fuel_cost = ((z + z * 0.25) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
-				console.log("Cost of trip: ",fuel_costround);
-				console.log("Displacement: ",displacement);
-				console.log("URL: ",url[y]);
+				document.write("Cost of trip: ",fuel_costround);
+				document.write("Displacement: ",displacement);
+				document.write("URL: ",url[y]);
 			} else {
 				const fuel_cost = ((z + z * 0.5) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
-				console.log("Cost of trip: ",fuel_costround);
-				console.log("Displacement: ",displacement);
-				console.log("URL: ",url[y]);
+				document.write("Cost of trip: ",fuel_costround);
+				document.write("Displacement: ",displacement);
+				document.write("URL: ",url[y]);
 			}
 		}
 		if ("geolocation" in navigator) {
@@ -84,15 +84,28 @@
 				// Handle errors or prompt user to enter their location manually
  			});
 		} else {
-			console.log("Geolocation is not supported by this browser.");
+			document.write("Geolocation is not supported by this browser.");
 			// Prompt user to enter their location manually
 		}
-		
+		(function () {
+			var old = document.write;
+			var logger = document.getElementById('log');
+			document.write = function () {
+			for (var i = 0; i < arguments.length; i++) {
+				if (typeof arguments[i] == 'object') {
+					logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
+				} else {
+					logger.innerHTML += arguments[i] + '<br />';
+				}
+			}
+			}
+		})();
 	</script>
+	<pre id="log"></pre>
 	<div class="footer">
 		<p><h3>Contact Details</p>
-		<div class="linkfooter" style="color: white;"">
-			<p><a href="mailto:climatecoders2015@gmail.com?subject=Query">climatecoders2015@gmail.com</a></p></h3>
+		<div class="linkfooter">
+			<p><a href="mailto:climatecoders2015@gmail.com?subject=Query" style="color: white;">climatecoders2015@gmail.com</a></p></h3>
 		</div>
 </body>
 
