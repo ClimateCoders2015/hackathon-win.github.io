@@ -59,27 +59,21 @@
 				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
 				const minDisplacement = minDisplacement.toFixed(2)
     			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
-    			const mapLink = document.getElementById('mapLink');
-    			mapLink.href = url[closestIndex];
-    			mapLink.textContent = 'View Map';
+				document.getElementById('href') = url[closestIndex];
 			} else if (distance >= 20 && distance <= 50) {
 				const fuel_cost = ((distance + distance * 0.25) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
 				const minDisplacement = minDisplacement.toFixed(2)
     			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
-    			const mapLink = document.getElementById('mapLink');
-    			mapLink.href = url[closestIndex];
-    			mapLink.textContent = 'View Map';
+				document.getElementById('href') = url[closestIndex];
 			} else {
 				const fuel_cost = ((distance + distance * 0.5) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
 				const minDisplacement = minDisplacement.toFixed(2)
     			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
-    			const mapLink = document.getElementById('mapLink');
-    			mapLink.href = url[closestIndex];
-    			mapLink.textContent = 'View Map';
+				document.getElementById('href') = url[closestIndex];
 			}
 		}
 		if ("geolocation" in navigator) {
