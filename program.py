@@ -19,21 +19,22 @@ def costcalculator():
             y=count
         elif displacement<z:
             z=displacement 
-            y=count   
-    if z <= 20:
+            y=count
+    distance=z*2           
+    if distance <= 20:
         fuel_cost=(z/20)*2.92+25
         fuel_costround=round(fuel_cost,2)
         print(fuel_costround)
         print(z)
         print(url[y])
-    elif z >= 20 and z <= 50:
-        fuel_cost=((z+z*.25)/20)*2.92+25
+    elif distance >= 20 and distance <= 50:
+        fuel_cost=((distance+distance*.25)/20)*2.92+25
         fuel_costround=round(fuel_cost,2)
         print(fuel_costround)
         print(displacement)
         print(url[y])
     else:
-        fuel_cost=((z+z*.5)/20)*2.92+25
+        fuel_cost=((distance+distance*.5)/20)*2.92+25
         fuel_costround=round(fuel_cost,2)
         print(fuel_costround)
         print(displacement)
