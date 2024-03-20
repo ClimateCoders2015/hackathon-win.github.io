@@ -87,19 +87,6 @@
 			document.write("Geolocation is not supported by this browser.");
 			// Prompt user to enter their location manually
 		}
-		(function () {
-			var old = document.write;
-			var logger = document.getElementById('log');
-			document.write = function () {
-			for (var i = 0; i < arguments.length; i++) {
-				if (typeof arguments[i] == 'object') {
-					logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
-				} else {
-					logger.innerHTML += arguments[i] + '<br />';
-				}
-			}
-			}
-		})();
 	</script>
 	<pre id="log"></pre>
 	<div class="footer">
