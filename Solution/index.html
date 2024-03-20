@@ -30,13 +30,55 @@
 		</div>
 	</div>
 	<script>
+		const foodname = ["UAE Food bank-Al Quoz", "UAE Food bank-Jabal Ali", "UAE Food bank-Al Muhaisinah", "UAE Food bank- Umm Al Quwain", "UAE Food bank- Ajman", "UAE Food bank- RAK"];
+		const latfood = [25.1436135, 24.9995836, 25.2623344, 25.5237787, 25.4169428, 25.7312055];
+		const longfood = [55.2547099, 55.1224508, 55.4298805, 55.553308, 55.4917157, 55.9479156];
+		const url = ["https://maps.app.goo.gl/pJnRnGzKhyfLYN7V8", "https://maps.app.goo.gl/jD2GAbzNSVcdz5ga7", "https://maps.app.goo.gl/4DdbZshD3W1nySxi9", "https://maps.app.goo.gl/QHoGa784nvxdoHLw9", "https://maps.app.goo.gl/1vz5YP4MMXWzny5A6", "https://maps.app.goo.gl/Ck54HCmPdyMZicMJ8"];
+		function findClosestFoodBank(lat1, lat2) {
+			let z = 0;
+			let y = 0;
+			for (let count = 0; count < 6; count++) {
+				const lat2 = latfood[count];
+				const lon2 = longfood[count];
+				const r = 6371;
+				const p = 0.017453292519943295;
+				const a = 0.5 - Math.cos((lat2 - lat1) * p) / 2 + Math.cos(lat1 * p) * Math.cos(lat2 * p) * (1 - Math.cos((lon2 - lon1) * p)) / 2;
+				const displacement = 2 * r * Math.asin(Math.sqrt(a));
+				if (count < 1) {
+					z = displacement;
+					y = count;
+				} else if (displacement < z) {
+					z = displacement;
+					y = count;
+				}
+			}
+			if (z <= 20) {
+				const fuel_cost = (z / 20) * 2.92 + 25;
+				const fuel_costround = fuel_cost.toFixed(2);
+				console.log("Cost of trip: ",fuel_costround);
+				console.log("Displacement: ",displacement);
+				console.log("URL: ",url[y]);
+			} else if (z >= 20 && z <= 50) {
+				const fuel_cost = ((z + z * 0.25) / 20) * 2.92 + 25;
+				const fuel_costround = fuel_cost.toFixed(2);
+				console.log("Cost of trip: ",fuel_costround);
+				console.log("Displacement: ",displacement);
+				console.log("URL: ",url[y]);
+			} else {
+				const fuel_cost = ((z + z * 0.5) / 20) * 2.92 + 25;
+				const fuel_costround = fuel_cost.toFixed(2);
+				console.log("Cost of trip: ",fuel_costround);
+				console.log("Displacement: ",displacement);
+				console.log("URL: ",url[y]);
+			}
+		}
 		if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 					var userLocation = {
 						latitude: position.coords.latitude,
 						longitude: position.coords.longitude
 					};
-					findClosestFoodBank(userLocation); // Function to find the closest food bank
+					findClosestFoodBank(position.coords.latitude, position.coords.longitude); // Function to find the closest food bank
 				}, function(error) {
 				console.error("Geolocation error: " + error.message);
 				// Handle errors or prompt user to enter their location manually
@@ -45,6 +87,7 @@
 			console.log("Geolocation is not supported by this browser.");
 			// Prompt user to enter their location manually
 		}
+		
 	</script>
 	<div class="footer">
 		<p><h3>Contact Details</p>
