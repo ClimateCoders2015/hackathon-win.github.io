@@ -5,6 +5,17 @@
 	background-image: url('Background1.png');
 }
 
+.footer {
+	background-color: #339966;
+	color: #ffffff;
+	text-align: center;
+	padding: 10px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+
 h3 {
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;	
 	font-size:20px;
@@ -41,33 +52,6 @@ table td {
 	font-weight: bold;
 }
 
-.contact-form {
-	margin-top: 20px;
-	font-size: 10px;
-}
-
-.contact-form label, .contact-form input, .contact-form name {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-size: medium;	
-}
-
-.contact-form button {
-	background-color: #339966;
-	color: #ffffff;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.contact-form button:hover {
-	background-color: #0056b3;
-}
 .Links {
 	font-family: monospace;
 	font-size: 22px;
