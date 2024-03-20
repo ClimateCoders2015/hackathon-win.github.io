@@ -52,20 +52,21 @@
 					y = count;
 				}
 			}
-			if (z <= 20) {
-				const fuel_cost = (z / 20) * 2.92 + 25;
+			distance=z*2
+			if (distance <= 20) {
+				const fuel_cost = (distance / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.write("Cost of trip: ",fuel_costround);
 				document.write("Displacement: ",displacement);
 				document.write("URL: ",url[y]);
-			} else if (z >= 20 && z <= 50) {
-				const fuel_cost = ((z + z * 0.25) / 20) * 2.92 + 25;
+			} else if (distance >= 20 && distance <= 50) {
+				const fuel_cost = ((distance + distance * 0.25) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.write("Cost of trip: ",fuel_costround);
 				document.write("Displacement: ",displacement);
 				document.write("URL: ",url[y]);
 			} else {
-				const fuel_cost = ((z + z * 0.5) / 20) * 2.92 + 25;
+				const fuel_cost = ((distance + distance * 0.5) / 20) * 2.92 + 25;
 				const fuel_costround = fuel_cost.toFixed(2);
 				document.write("Cost of trip: ",fuel_costround);
 				document.write("Displacement: ",displacement);
