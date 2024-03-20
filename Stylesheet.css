@@ -23,7 +23,7 @@ h2.Homepage {
 	text-align:center; 
 }
 
-h3.Homepage {
+h3.Homepage, p.Homepage {
 	text-align:justify;
 	max-width: 80%;
 }
