@@ -15,7 +15,13 @@
 	width: 100%;
 }
 
-.linkfooter {
+a.linkfooter:visited {
+	color: #ffffff
+}
+a.linkfooter:active {
+	color: #ffffff
+}
+a.linkfooter:hover {
 	color: #ffffff
 }
 
