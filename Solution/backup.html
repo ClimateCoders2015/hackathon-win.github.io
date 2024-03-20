@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateCoders</title>
+	<link rel = "icon" href ="https://climatecoders2015.github.io/hackathon-win.github.io/Team Icon.png" type = "image/x-icon">
+	<link href="https://climatecoders2015.github.io/hackathon-win.github.io/Stylesheet.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+    	<div class="Links">
+	    	<table>
+	            <tr>
+					 <td style="width: 25%">
+	                    <a href="https://climatecoders2015.github.io/hackathon-win.github.io/index.html">
+	                    <img src="https://climatecoders2015.github.io/hackathon-win.github.io/Team Logo.png" alt="Team Logo" height="25%" width="25%"></a>
+	                </td>
+					<td style="width: 25%">
+						<a href="https://climatecoders2015.github.io/hackathon-win.github.io/" class="link">Homepage</a>
+					</td>
+	                <td style="width: 25%">
+	                    <a href="https://climatecoders2015.github.io/hackathon-win.github.io/Team%20Page/index.html" class="link">Meet Our Team</a>
+	                </td>
+	                <td style="width: 25%">
+	                    <a href="https://climatecoders2015.github.io/hackathon-win.github.io/Solution/index.html" class="link">Our Solution</a>
+	                </td>				
+	            </tr>
+	        </table>
+		</div>
+	</div>
+	<script>
+		const foodname = ["UAE Food bank-Al QuominDisplacement", "UAE Food bank-Jabal Ali", "UAE Food bank-Al Muhaisinah", "UAE Food bank- Umm Al Quwain", "UAE Food bank- Ajman", "UAE Food bank- RAK"];
+		const latfood = [25.1436135, 24.9995836, 25.2623344, 25.5237787, 25.4169428, 25.7312055];
+		const longfood = [55.2547099, 55.1224508, 55.4298805, 55.553308, 55.4917157, 55.9479156];
+		const url = ["https://maps.app.goo.gl/pJnRnGzKhyfLYN7V8", "https://maps.app.goo.gl/jD2GAbzNSVcdz5ga7", "https://maps.app.goo.gl/4DdbZshD3W1nySxi9", "https://maps.app.goo.gl/QHoGa784nvxdoHLw9", "https://maps.app.goo.gl/1vz5YP4MMXWzny5A6", "https://maps.app.goo.gl/Ck54HCmPdyMZicMJ8"];
+		function findClosestFoodBank(lat1, lon1) {
+			let minDisplacement = 0;
+			let closestIndex = 0;
+			for (let count = 0; count < 6; count++) {
+				const lat2 = latfood[count];
+				const lon2 = longfood[count];
+				const r = 6371;
+				const p = 0.017453292519943295;
+				const a = 0.5 - Math.cos((lat2 - lat1) * p) / 2 + Math.cos(lat1 * p) * Math.cos(lat2 * p) * (1 - Math.cos((lon2 - lon1) * p)) / 2;
+				const displacement = 2 * r * Math.asin(Math.sqrt(a));
+				if (count < 1) {
+					minDisplacement = displacement;
+					closestIndex = count;
+				} else if (displacement < minDisplacement) {
+					minDisplacement = displacement;
+					closestIndex = count;
+				}
+			}
+			distance=minDisplacement*2
+			if (distance <= 20) {
+				const fuel_cost = (distance / 20) * 2.92 + 25;
+				const fuel_costround = fuel_cost.toFixed(2);
+				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
+				const minDisplacement = minDisplacement.toFixed(2)
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
+                const mapLink = document.getElementById('mapLink');
+                mapLink.href = url[closestIndex];
+			} else if (distance >= 20 && distance <= 50) {
+				const fuel_cost = ((distance + distance * 0.25) / 20) * 2.92 + 25;
+				const fuel_costround = fuel_cost.toFixed(2);
+				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
+				const minDisplacement = minDisplacement.toFixed(2)
+    			document.getElementById('displacement').textContent = `Displacement: ${minDisplacement} km`;
+                const mapLink = document.getElementById('mapLink');
+                mapLink.href = url[closestIndex];
+			} else {
+				const fuel_cost = ((distance + distance * 0.5) / 20) * 2.92 + 25;
+				const fuel_costround = fuel_cost.toFixed(2);
+				document.getElementById('tripCost').textContent = `Cost of trip: ${fuel_costround} AED`;
+				const minDisplacement = minDisplacement.toFixed(2)
+                const mapLink = document.getElementById('mapLink');
+                mapLink.href = url[closestIndex];
+			}
+		}
+		if ("geolocation" in navigator) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var userLocation = {
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude
+					};
+					findClosestFoodBank(position.coords.latitude, position.coords.longitude); // Function to find the closest food bank
+				}, function(error) {
+				console.error("Geolocation error: " + error.message);
+				// Handle errors or prompt user to enter their location manually
+ 			});
+		} else {
+			document.write("Geolocation is not supported by this browser.");
+			// Prompt user to enter their location manually
+		}
+	</script>
+	<h3><div id="tripCost">Cost of trip: </div>
+	<div id="displacement">Displacement: </div>
+	<div id="mapUrl">URL: <a id = "mapLink" href="#" target="_blank">Map</a></div></h3>
+	<div class="footer">
+		<p><h3>Contact Details</p>
+		<div class="linkfooter">
+			<p><a href="mailto:climatecoders2015@gmail.com?subject=Query" style="color: white;">climatecoders2015@gmail.com</a></p></h3>
+		</div>
+	</div>
+</body>
+
+
+</html>
