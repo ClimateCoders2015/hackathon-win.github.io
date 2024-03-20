@@ -2,7 +2,7 @@
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
-	background-image: url('Background1.png');
+	max-height: 1024px;
 }
 
 .footer {
