@@ -6,13 +6,17 @@
 }
 
 .footer {
-	background-color: #007BFF;
-	color: #ffffff;
+	background-color: #000000;
+	color: gold;
 	text-align: center;
 	padding: 10px;
 	position: relative;
 	bottom: 0;
 	width: 100%;
+}
+
+.linkfooter {
+	color: #ffffff
 }
 
 video {
