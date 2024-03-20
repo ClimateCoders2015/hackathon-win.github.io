@@ -19,6 +19,15 @@ a.linkfooter:visited, a.linkfooter:active, a.linkfooter:hover {
 	color: #ffffff
 }
 
+h2.Homepage {
+	text-align:center; 
+}
+
+h3.Homepage {
+	text-align:justify;
+	max-width: 80%;
+}
+
 video {
 	width: 50%;
 	height: 50%;
